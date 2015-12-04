@@ -1,6 +1,9 @@
-#!/bin/sh
+#!/usr/bin/env zsh
+ZPREZTO="${ZDOTDIR:-$HOME}/.zprezto"
 
-git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+git clone --recursive https://github.com/sorin-ionescu/prezto.git "$ZPREZTO"
+cd $ZPREZTO
+git remote add upstream https://github.com/sorin-ionescu/prezto.git
 
 setopt EXTENDED_GLOB
 
