@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 ZPREZTO="${ZDOTDIR:-$HOME}/.zprezto"
 
-git clone --recursive https://github.com/sorin-ionescu/prezto.git "$ZPREZTO"
+git clone --recursive https://github.com/rscarvalho/prezto.git "$ZPREZTO"
 cd $ZPREZTO
 git remote add upstream https://github.com/sorin-ionescu/prezto.git
 
