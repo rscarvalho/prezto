@@ -17,8 +17,9 @@ fi
 # Editors
 #
 
-export EDITOR='vim'
-export VISUAL='vim'
+export EDITOR=/usr/bin/nvim
+export VISUAL=${EDITOR}
+
 export PAGER='less'
 
 #
@@ -44,8 +45,18 @@ typeset -gU cdpath fpath mailpath path
 # Set the list of directories that Zsh searches for programs.
 path=(
   /usr/local/{bin,sbin}
+  $HOME/.bin
+  $HOME/.cargo/bin
   $path
 )
+
+env_managers=(jenv pyenv rbenv nodenv)
+
+for env in ${env_managers}; do
+  if command -v ${env} 1>/dev/null 2>&1; then
+    eval "$(${env} init --no-rehash -)"
+  fi
+done
 
 #
 # Less
@@ -72,3 +83,9 @@ if [[ ! -d "$TMPDIR" ]]; then
 fi
 
 TMPPREFIX="${TMPDIR%/}/zsh"
+
+# FZF Settings
+
+export FZF_COMPLETION_TRIGGER="~~"
+export FZF_COMPLETION_OPTS="+c -x"
+[[ -d "/usr/share/fzf" ]] && . /usr/share/fzf/completion.zsh
