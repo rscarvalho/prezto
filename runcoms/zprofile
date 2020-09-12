@@ -38,9 +38,10 @@ fi
 typeset -gU cdpath fpath mailpath path
 
 # Set the the list of directories that cd searches.
-# cdpath=(
-#   $cdpath
-# )
+cdpath=(
+  $cdpath
+  $HOME/code
+)
 
 # Set the list of directories that Zsh searches for programs.
 path=(
@@ -84,8 +85,12 @@ fi
 
 TMPPREFIX="${TMPDIR%/}/zsh"
 
-# FZF Settings
+alias uuid="uuidgen | tr -d - | tr -d '\n' | tr '[:upper:]' '[:lower:]'  | pbcopy && pbpaste && echo"
+alias nv='nvim +FZF'
+alias co='git checkout `git branch --format "%(refname:short)"|fzf`'
+alias git=hub
 
-export FZF_COMPLETION_TRIGGER="~~"
-export FZF_COMPLETION_OPTS="+c -x"
-[[ -d "/usr/share/fzf" ]] && . /usr/share/fzf/completion.zsh
+if ! command -v kitty &> /dev/null; then
+  alias kitty=/Applications/kitty.app/Contents/MacOS/kitty
+fi
+

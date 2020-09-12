@@ -10,11 +10,10 @@ if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
 
-export PATH=$HOME/.bin:$PATH
-
-if [ -d "/opt/boxen/homebrew/bin"  ]; then
-  export PATH=/opt/boxen/homebrew/bin:$PATH
-fi
-
-## Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+# FZF Settings
+export FZF_COMPLETION_TRIGGER="~~"
+export FZF_COMPLETION_OPTS="+c -x"
+[[ -d "/usr/share/fzf" ]] && . /usr/share/fzf/completion.zsh
+export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git --exclude node_modules --color=always'
+export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
+export FZF_DEFAULT_OPTS="--ansi"
